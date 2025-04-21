@@ -1,5 +1,7 @@
 # Invocatio
 
+![artwork](https://raw.githubusercontent.com/przem360/invocatio/refs/heads/main/artwork.png?token=GHSAT0AAAAAADCMX5GYOOHPXDY2D5XZIWXQ2AFXT4Q)
+
 **Invocatio** to gra tekstowa inspirowana mrocznym klimatem Lovecrafta, gdzie gracz wciela się w lidera demonicznego kultu, rządzącego odizolowanym miasteczkiem. Gra skupia się na zarządzaniu zasobami, składaniu ofiar i podejmowaniu trudnych decyzji, które wpłyną na losy mieszkańców i kultu.
 
 ## Opis gry
