@@ -1,11 +1,11 @@
 import random
 import sys
 
-# --- STAN GRY ---
+# --- GAME STATE ---
 state = {
     "turn": 1,
     "year": 1921,
-    "month": "Luty",
+    "month": "February",
     "population": 120,
     "faith": 35,
     "fear": 15,
@@ -17,82 +17,82 @@ state = {
     "insight": 0,
 }
 
-# --- ZDARZENIA ---
+# --- EVENTS ---
 events = [
     {
-        "text": "Dziecko wpływowego gospodarza zniknęło. Mieszkańcy podejrzewają kult.",
+        "text": "The child of a prominent farmer has disappeared. Villagers suspect the cult.",
         "options": [
-            {"label": "Poświęć innego wieśniaka jako kozła ofiarnego.", "effects": {"fear": -10, "faith": -5, "population": -1}},
-            {"label": "Złóż dziecko w ofierze.", "effects": {"favor": +15, "fear": +15, "population": -1}},
-            {"label": "Zignoruj sytuację.", "effects": {"fear": +10}},
+            {"label": "Sacrifice another villager as a scapegoat.", "effects": {"fear": -10, "faith": -5, "population": -1}},
+            {"label": "Sacrifice the child.", "effects": {"favor": +15, "fear": +15, "population": -1}},
+            {"label": "Ignore the situation.", "effects": {"fear": +10}},
         ]
     },
     {
-        "text": "Obdartus twierdzi, że słyszy głos z Głębi i chce dołączyć do kultu.",
+        "text": "A ragged man claims he hears voices from the Depths and wants to join the cult.",
         "options": [
-            {"label": "Przyjmij go i wtajemnicz.", "effects": {"faith": +10}},
-            {"label": "Złóż go w ofierze.", "effects": {"favor": +10, "fear": +5}},
-            {"label": "Wyrzuć go z miasta.", "effects": {}},
+            {"label": "Accept and initiate him.", "effects": {"faith": +10}},
+            {"label": "Sacrifice him.", "effects": {"favor": +10, "fear": +5}},
+            {"label": "Expel him from the town.", "effects": {}},
         ]
     },
     {
-        "text": "Na murze pojawia się cień w kształcie oka. Mieszkańcy boją się.",
+        "text": "A shadow in the shape of an eye appears on the wall. Villagers are frightened.",
         "options": [
-            {"label": "Ogłoś cud i zrób święto.", "effects": {"faith": +15, "stored_food": -30}},
-            {"label": "Rytuał objaśnienia.", "effects": {"favor": +10, "fear": +5}},
-            {"label": "Zamaluj cień.", "effects": {"fear": -10, "faith": -10}},
+            {"label": "Declare a miracle and hold a festival.", "effects": {"faith": +15, "stored_food": -30}},
+            {"label": "Perform a clarification ritual.", "effects": {"favor": +10, "fear": +5}},
+            {"label": "Paint over the shadow.", "effects": {"fear": -10, "faith": -10}},
         ]
     },
 ]
 
-# --- FUNKCJE ---
+# --- FUNCTIONS ---
 def apply_effects(effects):
     for key, value in effects.items():
         state[key] = max(0, state.get(key, 0) + value)
 
 def check_risk():
     if state["fear"] >= 80 and state["faith"] <= 30:
-        print("\n⚠️ Mieszkańcy są bliscy buntu!")
+        print("\n⚠️ The villagers are on the verge of rebellion!")
     if state["fear"] >= 100:
-        print("\n🔥 BUNT! Lud powstaje i zrywa się przeciw kultowi!")
-        print("💀 KONIEC: Zginąłeś z rąk ludzi.")
+        print("\n🔥 REBELLION! The people rise up against the cult!")
+        print("💀 ENDING: You were killed by the mob.")
         sys.exit()
 
 def end_game():
-    print("\n🔚 KONIEC GRY – Rok 1922")
+    print("\n🔚 END OF GAME – Year 1922")
     favor = state["favor"]
     faith = state["faith"]
     fear = state["fear"]
 
     if favor > 95 and fear > 90:
-        print("🤯 Zeszli... Ale nie tak, jak chciałeś. Twój umysł nie wytrzymał.")
+        print("🤯 They came... but not as you hoped. Your mind couldn’t handle it.")
     elif favor > 80 and faith > 70 and fear < 50:
-        print("🌑 Zejście Głębi nastąpiło. Kult triumfuje.")
+        print("🌑 The Descent of the Depths has occurred. The cult triumphs.")
     elif favor > 50 and fear < 60:
-        print("🕯️ Cisza Po Drugiej Stronie. Przetrwałeś. Ale nie wiesz, czy warto było.")
+        print("🕯️ Silence Beyond. You survived. But you're unsure it was worth it.")
     else:
-        print("🔥 Zguba Miasta. Nie byłeś godny.")
+        print("🔥 City’s Doom. You were not worthy.")
     sys.exit()
 
-# --- GŁÓWNA PĘTLA ---
+# --- MAIN LOOP ---
 while state["turn"] <= 12:
-    print(f"\n🌘 Miasteczko Ashridge – Tura {state['turn']}/12")
-    print(f"Ludność: {state['population']} | Wiara: {state['faith']} | Strach: {state['fear']} | Przychylność: {state['favor']}")
-    print(f"Jedzenie: {state['stored_food']} | Materiały rytualne: {state['ritual_materials']} | Moc Kultu: {state['cult_power']} | Wgląd: {state['insight']}")
+    print(f"\n🌘 Town of Ashridge – Turn {state['turn']}/12")
+    print(f"Population: {state['population']} | Faith: {state['faith']} | Fear: {state['fear']} | Favor: {state['favor']}")
+    print(f"Food: {state['stored_food']} | Ritual Materials: {state['ritual_materials']} | Cult Power: {state['cult_power']} | Insight: {state['insight']}")
 
-    # Żywienie
+    # Feeding
     consumed = state["population"] * 2
     state["stored_food"] -= consumed
-    print(f"🍽️ Zużyto {consumed} jedzenia na wykarmienie ludności.")
+    print(f"🍽️ Consumed {consumed} food to feed the population.")
     if state["stored_food"] < 0:
-        print("⚠️ Brakuje jedzenia! Ludzie głodują, wiara spada!")
+        print("⚠️ Not enough food! People are starving, faith drops!")
         state["faith"] = max(0, state["faith"] - 10)
         state["fear"] += 10
         state["population"] = max(0, state["population"] - 5)
         state["stored_food"] = 0
 
     try:
-        s = int(input("👁️  Ilu ludzi chcesz złożyć w ofierze w tym miesiącu? (0–10): "))
+        s = int(input("👁️  How many people do you want to sacrifice this month? (0–10): "))
         s = max(0, min(s, 10, state["population"]))
     except ValueError:
         s = 0
@@ -103,16 +103,16 @@ while state["turn"] <= 12:
     state["fear"] += s * 2
     state["cult_power"] += s
 
-    print(f"🩸 Złożono {s} ludzi. Przychylność +{s*3}, Strach +{s*2}, Moc Kultu +{s}")
+    print(f"🩸 {s} sacrificed. Favor +{s*3}, Fear +{s*2}, Cult Power +{s}")
 
-    print("\n⚙️ Wybierz dodatkową akcję:")
-    print("  1. Zbieraj jedzenie (+50 jedzenia)")
-    print("  2. Szukaj materiałów rytualnych (+1 materiał)")
-    print("  3. Rytuał wiedzy (+1 wgląd, -1 materiał)")
-    print("  4. Rytuał mocy (+5 przychylności, -2 materiały)")
+    print("\n⚙️ Choose an additional action:")
+    print("  1. Gather food (+50 food)")
+    print("  2. Search for ritual materials (+1 material)")
+    print("  3. Knowledge ritual (+1 insight, -1 material)")
+    print("  4. Power ritual (+5 favor, -2 materials)")
 
     try:
-        action = int(input("Twój wybór: "))
+        action = int(input("Your choice: "))
         if action == 1:
             state["stored_food"] += 50
         elif action == 2:
@@ -127,14 +127,14 @@ while state["turn"] <= 12:
     except ValueError:
         pass
 
-    # WYDARZENIE
+    # EVENT
     event = random.choice(events)
-    print("\n📜 Wydarzenie:", event["text"])
+    print("\n📜 Event:", event["text"])
     for i, opt in enumerate(event["options"]):
         print(f"  {i+1}. {opt['label']}")
 
     try:
-        choice = int(input("Twój wybór: ")) - 1
+        choice = int(input("Your choice: ")) - 1
         if 0 <= choice < len(event["options"]):
             apply_effects(event["options"][choice]["effects"])
     except ValueError:
@@ -145,3 +145,4 @@ while state["turn"] <= 12:
     state["turn"] += 1
 
 end_game()
+

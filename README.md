@@ -2,42 +2,38 @@
 
 ![artwork](https://github.com/przem360/invocatio/blob/main/artwork.png)
 
-**Invocatio** to gra tekstowa inspirowana mrocznym klimatem Lovecrafta, gdzie gracz wciela się w lidera demonicznego kultu, rządzącego odizolowanym miasteczkiem. Gra skupia się na zarządzaniu zasobami, składaniu ofiar i podejmowaniu trudnych decyzji, które wpłyną na losy mieszkańców i kultu.
+**Invocatio** is a text-based game inspired by the dark, Lovecraftian atmosphere, where the player takes on the role of the leader of a demonic cult ruling over an isolated town. The game focuses on resource management, human sacrifices, and making difficult choices that influence the fate of the townspeople and the cult itself.
 
-## Opis gry
+## Game Description
 
-Gracz kieruje kultem, który ma za zadanie pozyskać moc demonicznego bóstwa. Aby to osiągnąć, musi składać ofiary, przeprowadzać rytuały oraz dbać o zasoby, takie jak jedzenie, materiały rytualne i moc kultu. Jednocześnie musi balansować pomiędzy zyskiwaniem favoru demona a utrzymaniem lojalności mieszkańców. Zbyt wiele ofiar może doprowadzić do buntu, a zbyt mało może sprawić, że kult utraci moc.
+The player controls a cult that seeks to gain power from a demonic deity. To achieve this, they must offer sacrifices, perform rituals, and manage key resources such as food, ritual materials, and cult power. At the same time, the player must balance gaining the demon’s favor with maintaining the loyalty of the townspeople. Too many sacrifices may lead to rebellion, while too few may cause the cult to lose its power.
 
-### Kluczowe elementy:
+### Key Features:
 
-- **Ofiary** – składanie ofiar z ludzi, aby zyskać favor demona. Im więcej ofiar, tym większa moc, ale również większy strach i ryzyko buntu.
-- **Zasoby** – zarządzanie jedzeniem, materiałami rytualnymi oraz mocą kultu. Zasoby są niezbędne do przeprowadzania rytuałów i utrzymania kultu.
-- **Rytuały** – używanie materiałów rytualnych do odprawiania rytuałów, które mogą przyspieszyć rozwój kultu lub przyciągnąć uwagę demona.
-- **Wydarzenia fabularne** – różnorodne sytuacje, które mogą wpłynąć na rozwój gry, jak pojawienie się nowych wyzwań, decyzji moralnych i nieoczekiwanych gości.
+- **Sacrifices** – Offer human lives to gain the demon's favor. The more you sacrifice, the stronger the cult becomes, but fear and the risk of rebellion also increase.
+- **Resources** – Manage food, ritual materials, and cult power. These are essential for performing rituals and keeping the cult alive.
+- **Rituals** – Use ritual materials to perform ceremonies that can accelerate the cult's growth or draw the attention of the dark deity.
+- **Story Events** – Narrative situations that affect the game's progression, including moral dilemmas, new challenges, and unexpected visitors.
 
-### Cechy gry:
+### Gameplay Highlights:
 
-- **Zarządzanie zasobami** – ścisła kontrola nad zapasami żywności, materiałów rytualnych i mocy kultu.
-- **Wybory moralne** – gracz staje przed trudnymi decyzjami, które mogą prowadzić do różnych zakończeń.
-- **Zakończenia** – różnorodne zakończenia w zależności od decyzji gracza: kult triumfuje, miasteczko upada, lub gracz zostaje pochłonięty przez demoniczną moc.
+- **Resource Management** – Carefully monitor and control food supplies, ritual materials, and cult power.
+- **Moral Choices** – Face difficult decisions that lead to different outcomes.
+- **Endings** – Multiple possible endings based on the player's choices: the cult may triumph, the town may fall, or the player may be consumed by dark power.
 
-### Mechanika:
+### Mechanics:
 
-- **Tury** – gra toczy się przez określoną liczbę tur (np. 12 miesięcy), a każda tura to nowe wyzwania.
-- **Ryzyko** – zbyt wysokie poziomy strachu lub zbyt niska wiara mogą prowadzić do buntu lub porażki.
-- **Zdarzenia** – dynamicznie generowane wydarzenia, które zmieniają bieg gry i oferują różnorodne wyzwania.
+- **Turns** – The game plays out over a set number of turns (e.g., 12 months), each bringing new challenges.
+- **Risk** – High fear or low faith levels can result in rebellion or failure.
+- **Events** – Dynamically generated events shape the game's direction and present new obstacles.
 
-## Cel gry
+## Objective
 
-Celem gry jest utrzymanie równowagi w mieście, pozyskiwanie favoru demona i rozwój kultu. Gracz musi podejmować decyzje, które nie tylko wpłyną na losy jego kultu, ale również na przyszłość miasteczka.
+The goal is to maintain balance in the town, gain the demon’s favor, and grow the cult. The player must make decisions that impact not only the cult’s destiny but also the future of the town.
 
-## Przykładowe zakończenia:
+## Sample Endings:
 
-- **Zejście Głębi** – kult triumfuje, ale za cenę straty ludzkiego umysłu.
-- **Zguba Miasta** – kult upada, a miasto zostaje zniszczone.
-- **Cisza Po Drugiej Stronie** – kult przetrwał, ale za cenę niepewności i tajemnicy.
+- **Descent of the Deep** – The cult triumphs, but at the cost of the human mind.
+- **Doom of the Town** – The cult fails and the town is destroyed.
+- **Silence Beyond the Veil** – The cult survives, but at the price of uncertainty and mystery.
 
-## Rozpocznij grę
-
-Wejdź w mroczny świat, gdzie każda decyzja może prowadzić do wielkiej potęgi... lub nieodwrac
-alnej zagłady.
