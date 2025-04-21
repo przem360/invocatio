@@ -2,7 +2,9 @@
 
 ![artwork](https://github.com/przem360/invocatio/blob/main/artwork.png)
 
-**Invocatio** is a text-based game inspired by the dark, Lovecraftian atmosphere, where the player takes on the role of the leader of a demonic cult ruling over an isolated town. The game focuses on resource management, human sacrifices, and making difficult choices that influence the fate of the townspeople and the cult itself.
+**Invocatio** is a text-based game inspired by the dark, Lovecraftian atmosphere, where the player takes on the role of the leader of a demonic cult ruling over an isolated town. It draws gameplay inspiration from classic resource management games like [**Hamurabi**](https://en.wikipedia.org/wiki/Hamurabi_(video_game)), originally known as *King of Sumeria*, created for early 8-bit computers.  
+
+The game focuses on managing resources, offering human sacrifices, and making difficult choices that influence the fate of the townspeople and the cult itself.
 
 ## Game Description
 
@@ -19,7 +21,7 @@ The player controls a cult that seeks to gain power from a demonic deity. To ach
 
 ### Gameplay Highlights:
 
-- **Resource Management** – Carefully monitor and control food supplies, ritual materials, and cult power.
+- **Resource Management** – Inspired by classic games like *Hamurabi*, resource planning is central to survival.
 - **Moral Choices** – Face difficult decisions that lead to different outcomes.
 - **Endings** – Multiple possible endings based on the player's choices: the cult may triumph, the town may fall, or the player may be consumed by dark power.
 
