@@ -6,7 +6,9 @@
 
 ## Game Description
 
-The player controls a cult that seeks to gain power from a demonic deity. To achieve this, they must offer sacrifices, perform rituals, and manage key resources such as food, ritual materials, and cult power. At the same time, the player must balance gaining the demon’s favor with maintaining the loyalty of the townspeople. Too many sacrifices may lead to rebellion, while too few may cause the cult to lose its power.
+The player controls a cult that seeks to gain power from a demonic deity. To achieve this, they must offer sacrifices, perform rituals, and manage key resources such as food, ritual materials, and cult power. At the same time, the player must balance gaining the demon’s favor with maintaining the loyalty of the townspeople. Too many sacrifices may lead to rebellion, while too few may cause the cult to lose its power.  
+  
+![screenshot](https://github.com/przem360/invocatio/blob/main/screenshot.png)
 
 ### Key Features:
 
