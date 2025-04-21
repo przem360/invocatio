@@ -75,74 +75,75 @@ def end_game():
     sys.exit()
 
 # --- MAIN LOOP ---
-while state["turn"] <= 12:
-    print(f"\n🌘 Town of Ashridge – Turn {state['turn']}/12")
-    print(f"Population: {state['population']} | Faith: {state['faith']} | Fear: {state['fear']} | Favor: {state['favor']}")
-    print(f"Food: {state['stored_food']} | Ritual Materials: {state['ritual_materials']} | Cult Power: {state['cult_power']} | Insight: {state['insight']}")
+if __name__ == "__main__":
+    while state["turn"] <= 12:
+        print(f"\n🌘 Town of Ashridge – Turn {state['turn']}/12")
+        print(f"Population: {state['population']} | Faith: {state['faith']} | Fear: {state['fear']} | Favor: {state['favor']}")
+        print(f"Food: {state['stored_food']} | Ritual Materials: {state['ritual_materials']} | Cult Power: {state['cult_power']} | Insight: {state['insight']}")
 
-    # Feeding
-    consumed = state["population"] * 2
-    state["stored_food"] -= consumed
-    print(f"🍽️ Consumed {consumed} food to feed the population.")
-    if state["stored_food"] < 0:
-        print("⚠️ Not enough food! People are starving, faith drops!")
-        state["faith"] = max(0, state["faith"] - 10)
-        state["fear"] += 10
-        state["population"] = max(0, state["population"] - 5)
-        state["stored_food"] = 0
+        # Feeding
+        consumed = state["population"] * 2
+        state["stored_food"] -= consumed
+        print(f"🍽️ Consumed {consumed} food to feed the population.")
+        if state["stored_food"] < 0:
+            print("⚠️ Not enough food! People are starving, faith drops!")
+            state["faith"] = max(0, state["faith"] - 10)
+            state["fear"] += 10
+            state["population"] = max(0, state["population"] - 5)
+            state["stored_food"] = 0
 
-    try:
-        s = int(input("👁️  How many people do you want to sacrifice this month? (0–10): "))
-        s = max(0, min(s, 10, state["population"]))
-    except ValueError:
-        s = 0
+        try:
+            s = int(input("👁️  How many people do you want to sacrifice this month? (0–10): "))
+            s = max(0, min(s, 10, state["population"]))
+        except ValueError:
+            s = 0
 
-    state["sacrifices"] = s
-    state["population"] -= s
-    state["favor"] += s * 3
-    state["fear"] += s * 2
-    state["cult_power"] += s
+        state["sacrifices"] = s
+        state["population"] -= s
+        state["favor"] += s * 3
+        state["fear"] += s * 2
+        state["cult_power"] += s
 
-    print(f"🩸 {s} sacrificed. Favor +{s*3}, Fear +{s*2}, Cult Power +{s}")
+        print(f"🩸 {s} sacrificed. Favor +{s*3}, Fear +{s*2}, Cult Power +{s}")
 
-    print("\n⚙️ Choose an additional action:")
-    print("  1. Gather food (+50 food)")
-    print("  2. Search for ritual materials (+1 material)")
-    print("  3. Knowledge ritual (+1 insight, -1 material)")
-    print("  4. Power ritual (+5 favor, -2 materials)")
+        print("\n⚙️ Choose an additional action:")
+        print("  1. Gather food (+50 food)")
+        print("  2. Search for ritual materials (+1 material)")
+        print("  3. Knowledge ritual (+1 insight, -1 material)")
+        print("  4. Power ritual (+5 favor, -2 materials)")
 
-    try:
-        action = int(input("Your choice: "))
-        if action == 1:
-            state["stored_food"] += 50
-        elif action == 2:
-            state["ritual_materials"] += 1
-        elif action == 3 and state["ritual_materials"] >= 1:
-            state["ritual_materials"] -= 1
-            state["insight"] += 1
-        elif action == 4 and state["ritual_materials"] >= 2:
-            state["ritual_materials"] -= 2
-            state["favor"] += 5
-            state["cult_power"] += 2
-    except ValueError:
-        pass
+        try:
+            action = int(input("Your choice: "))
+            if action == 1:
+                state["stored_food"] += 50
+            elif action == 2:
+                state["ritual_materials"] += 1
+            elif action == 3 and state["ritual_materials"] >= 1:
+                state["ritual_materials"] -= 1
+                state["insight"] += 1
+            elif action == 4 and state["ritual_materials"] >= 2:
+                state["ritual_materials"] -= 2
+                state["favor"] += 5
+                state["cult_power"] += 2
+        except ValueError:
+            pass
 
-    # EVENT
-    event = random.choice(events)
-    print("\n📜 Event:", event["text"])
-    for i, opt in enumerate(event["options"]):
-        print(f"  {i+1}. {opt['label']}")
+        # EVENT
+        event = random.choice(events)
+        print("\n📜 Event:", event["text"])
+        for i, opt in enumerate(event["options"]):
+            print(f"  {i+1}. {opt['label']}")
 
-    try:
-        choice = int(input("Your choice: ")) - 1
-        if 0 <= choice < len(event["options"]):
-            apply_effects(event["options"][choice]["effects"])
-    except ValueError:
-        pass
+        try:
+            choice = int(input("Your choice: ")) - 1
+            if 0 <= choice < len(event["options"]):
+                apply_effects(event["options"][choice]["effects"])
+        except ValueError:
+            pass
 
-    check_risk()
-    state["cult_power"] = max(0, state["cult_power"] - 1)
-    state["turn"] += 1
+        check_risk()
+        state["cult_power"] = max(0, state["cult_power"] - 1)
+        state["turn"] += 1
 
-end_game()
+    end_game()
 
