@@ -3,6 +3,8 @@ import sys
 import os
 import json
 
+TOWN_NAME = "Ashridge"
+
 # --- GAME STATE ---
 
 default_state = {
@@ -178,7 +180,7 @@ def main():
     load_state()
 
     while state["turn"] <= 12:
-        print(f"\n🌘 Town of Ashridge – Turn {state['turn']}/12")
+        print(f"\n🌘 Town of {TOWN_NAME} – Turn {state['turn']}/12")
         print(f"Population: {state['population']} | Faith: {state['faith']} | Fear: {state['fear']} | Favor: {state['favor']}")
         print(f"Food: {state['stored_food']} | Ritual Materials: {state['ritual_materials']} | Cult Power: {state['cult_power']} | Insight: {state['insight']}")
 
