@@ -1,9 +1,11 @@
 import random
 import sys
 import os
+from os import system
 import json
 
 TOWN_NAME = "Ashridge"
+STATE_FILE = "state.txt"
 
 # --- GAME STATE ---
 
@@ -55,21 +57,21 @@ events = [
 
 # --- GAME SAVE / LOAD ---
 
-def save_state():
+def save_state(file_name):
     try:
-        with open("state.txt", "w") as f:
+        with open(file_name, "w") as f:
             json.dump(state, f)
         print("💾 Gra zapisana.")
     except Exception as e:
         print(f"❌ Błąd zapisu gry: {e}")
 
-def load_state():
+def load_state(file_name):
     global state
-    if os.path.exists("state.txt"):
+    if os.path.exists(file_name):
         choice = input("📁 Wykryto zapis gry. Wczytać stan gry? (t/n): ").strip().lower()
         if choice == "t":
             try:
-                with open("state.txt", "r") as f:
+                with open(file_name, "r") as f:
                     state = json.load(f)
                 print("✅ Wczytano zapis gry.")
             except Exception as e:
@@ -82,6 +84,25 @@ def load_state():
 
 # --- CORE FUNCTIONS ---
 
+def clear_output():
+    system("clear||cls")
+
+def delete_file(file_name):
+    file_path = os.path.join(os.path.dirname(__file__), file_name)
+    if os.path.isfile(file_path):
+        try:
+            os.remove(file_path)
+            return 0  # File was deleted
+        except Exception as e:
+            return -2 # File exists but can not be deleted
+    else:
+        return -1  # File does not exists
+
+def present_info():
+    print(f"\n🌘 Town of {TOWN_NAME} – Turn {state['turn']}/12")
+    print(f"Population: {state['population']} | Faith: {state['faith']} | Fear: {state['fear']} | Favor: {state['favor']}")
+    print(f"Food: {state['stored_food']} | Ritual Materials: {state['ritual_materials']} | Cult Power: {state['cult_power']} | Insight: {state['insight']}")
+
 def apply_effects(effects):
     for key, value in effects.items():
         state[key] = max(0, state.get(key, 0) + value)
@@ -92,6 +113,7 @@ def check_risk():
     if state["fear"] >= 100:
         print("\n🔥 REBELLION! The people rise up against the cult!")
         print("💀 ENDING: You were killed by the mob.")
+        delete_file(STATE_FILE)
         sys.exit()
 
 def end_game():
@@ -108,6 +130,7 @@ def end_game():
         print("🕯️ Silence Beyond. You survived. But you're unsure it was worth it.")
     else:
         print("🔥 City’s Doom. You were not worthy.")
+    delete_file(STATE_FILE)
     sys.exit()
 
 # --- MODULAR GAME TURN FUNCTIONS ---
@@ -115,7 +138,7 @@ def end_game():
 def feed_population():
     consumed = state["population"] * 2
     state["stored_food"] -= consumed
-    print(f"🍽️ Consumed {consumed} food to feed the population.")
+    print(f"🍽️ Consumed {consumed} food to feed the population. {state["stored_food"]} food left.")
     if state["stored_food"] < 0:
         print("⚠️ Not enough food! People are starving, faith drops!")
         state["faith"] = max(0, state["faith"] - 10)
@@ -177,12 +200,11 @@ def trigger_event():
 # --- MAIN LOOP ---
 
 def main():
-    load_state()
+    load_state(STATE_FILE)
 
     while state["turn"] <= 12:
-        print(f"\n🌘 Town of {TOWN_NAME} – Turn {state['turn']}/12")
-        print(f"Population: {state['population']} | Faith: {state['faith']} | Fear: {state['fear']} | Favor: {state['favor']}")
-        print(f"Food: {state['stored_food']} | Ritual Materials: {state['ritual_materials']} | Cult Power: {state['cult_power']} | Insight: {state['insight']}")
+        clear_output()
+        present_info()
 
         feed_population()
         perform_sacrifices()
@@ -191,7 +213,7 @@ def main():
 
         check_risk()
         state["cult_power"] = max(0, state["cult_power"] - 1)
-        save_state()
+        save_state(STATE_FILE)
         state["turn"] += 1
 
     end_game()
