@@ -35,8 +35,9 @@ The player controls a cult that seeks to gain power from a demonic deity. To ach
 
 The goal is to maintain balance in the town, gain the demon’s favor, and grow the cult. The player must make decisions that impact not only the cult’s destiny but also the future of the town.
 
-## Sample Endings:
+## Possible Endings:
 
+- **Rebelion** – You can be killed by the mob, as faith drops, because of starvation.
 - **Descent of the Deep** – The cult triumphs, but at the cost of the human mind.
 - **Doom of the Town** – The cult fails and the town is destroyed.
 - **Silence Beyond the Veil** – The cult survives, but at the price of uncertainty and mystery.

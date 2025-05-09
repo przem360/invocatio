@@ -61,21 +61,21 @@ def save_state(file_name):
     try:
         with open(file_name, "w") as f:
             json.dump(state, f)
-        print("💾 Gra zapisana.")
+        print("💾 Game saved.")
     except Exception as e:
-        print(f"❌ Błąd zapisu gry: {e}")
+        print(f"❌ Saving error: {e}")
 
 def load_state(file_name):
     global state
     if os.path.exists(file_name):
-        choice = input("📁 Wykryto zapis gry. Wczytać stan gry? (t/n): ").strip().lower()
-        if choice == "t":
+        choice = input("📁 Save state found. Load state? (y/n): ").strip().lower()
+        if choice == "y":
             try:
                 with open(file_name, "r") as f:
                     state = json.load(f)
-                print("✅ Wczytano zapis gry.")
+                print("✅ State loaded.")
             except Exception as e:
-                print(f"❌ Błąd wczytywania stanu: {e}")
+                print(f"❌ Loading error: {e}")
                 state = default_state.copy()
         else:
             state = default_state.copy()
@@ -97,6 +97,11 @@ def delete_file(file_name):
             return -2 # File exists but can not be deleted
     else:
         return -1  # File does not exists
+
+def random_number(a, b):
+    if a >= b:
+        return -1
+    return random.randint(a, b)
 
 def present_info():
     print(f"\n🌘 Town of {TOWN_NAME} – Turn {state['turn']}/12")
@@ -138,7 +143,7 @@ def end_game():
 def feed_population():
     consumed = state["population"] * 2
     state["stored_food"] -= consumed
-    print(f"🍽️ Consumed {consumed} food to feed the population. {state["stored_food"]} food left.")
+    print(f"🍽️ Consumed {consumed} food to feed the population.")
     if state["stored_food"] < 0:
         print("⚠️ Not enough food! People are starving, faith drops!")
         state["faith"] = max(0, state["faith"] - 10)
@@ -163,7 +168,7 @@ def perform_sacrifices():
 
 def choose_action():
     print("\n⚙️ Choose an additional action:")
-    print("  1. Gather food (+50 food)")
+    print("  1. Gather food")
     print("  2. Search for ritual materials (+1 material)")
     print("  3. Knowledge ritual (+1 insight, -1 material)")
     print("  4. Power ritual (+5 favor, -2 materials)")
@@ -171,7 +176,10 @@ def choose_action():
     try:
         action = int(input("Your choice: "))
         if action == 1:
-            state["stored_food"] += 50
+            # state["stored_food"] += 50
+            rnd_nmbr = random_number((state["population"]//2),(state["population"]*2))
+            state["stored_food"] += rnd_nmbr
+            print(f"\n🥔 Gathered food: {rnd_nmbr}")
         elif action == 2:
             state["ritual_materials"] += 1
         elif action == 3 and state["ritual_materials"] >= 1:
